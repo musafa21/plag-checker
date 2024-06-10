@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Results for {{ filename }}</h1>
+        <div class="mt-4">
+            <ul>
+                {% for i in range(similarities.scores|length) %}
+                    <li>Similarity: {{ "%.2f" | format(similarities.scores[i] * 100) }}% - <a href="{{ similarities.urls[i] }}" target="_blank">{{ similarities.urls[i] }}</a></li>
+                {% endfor %}
+            </ul>
+            <a href="{{ url_for('download_results', filename=filename) }}" class="btn btn-primary mt-4">Download Results as PDF</a>
+        </div>
+    </div>
+</body>
+</html>
